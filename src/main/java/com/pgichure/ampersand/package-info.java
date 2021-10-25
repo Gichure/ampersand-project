@@ -1,5 +1,6 @@
 /**
  *  @author Paul
- *  This is the root package for the application
+ *  
+ * <p> This is the root package for the application
  */
 package com.pgichure.ampersand;
