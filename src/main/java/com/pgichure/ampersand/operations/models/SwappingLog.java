@@ -13,9 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.ManyToAny;
-
+import com.pgichure.ampersand.setups.models.Battery;
 import com.pgichure.ampersand.setups.models.Driver;
+import com.pgichure.ampersand.setups.models.Station;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.Data;
@@ -53,7 +53,11 @@ public class SwappingLog extends Auditable<String> implements Serializable{/**
 	
 	@ManyToOne
 	@JoinColumn(name = "battery_id", nullable = false)
-	private Driver batteryIssued;
+	private Battery batteryIssued;
+	
+	@ManyToOne
+	@JoinColumn(name = "station_id", nullable = false)
+	private Station station;
 	
 	@Column(name = "charge_issue_level", nullable = false)
 	private BigDecimal chargeIssueLevel;

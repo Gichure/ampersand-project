@@ -11,7 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.pgichure.ampersand.operations.models.SwappingLog;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.Data;

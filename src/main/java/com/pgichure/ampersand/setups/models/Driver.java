@@ -15,7 +15,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.pgichure.ampersand.operations.models.SwappingLog;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.Data;

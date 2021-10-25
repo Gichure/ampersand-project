@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
 /**
@@ -20,6 +21,7 @@ import lombok.RequiredArgsConstructor;
  */
 @Data
 @RequiredArgsConstructor
+@EqualsAndHashCode(callSuper=false)
 @Table(name ="tbl_cost_setups")
 @Entity
 public class CostSetup extends Auditable<String> implements Serializable{/**
