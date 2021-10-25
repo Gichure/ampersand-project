@@ -1,0 +1,24 @@
+version: '3'
+services:
+  ampersand-mysql:
+    container_name: ampersand-mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: dev
+      MYSQL_ROOT_PASSWORD: Dev123#@!
+      MYSQL_ROOT_HOST: '%'
+    ports:
+    - "3306:3306"
+    restart: always
+
+  ampersand-project:
+    build: .
+    volumes:
+    - .:/app
+    - ~/.m2:/root/.m2
+    working_dir: /app
+    ports:
+    - 9099:9099
+    command: mvn clean spring-boot:run -DskipTests=true
+    depends_on:
+    - ampersand-mysql

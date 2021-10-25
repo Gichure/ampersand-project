@@ -1,0 +1,47 @@
+server:
+  port: 1212
+management:
+  server:
+    port: 8081
+  endpoints:
+    web:
+      exposure:
+        include: info,health,flyway
+spring:   
+  application:
+    name: ampersand
+  main:
+    banner-mode: "off"
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/ampersand_project_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+    username: dev
+    password: Dev123#@!
+    platform: mysql
+    initialization-mode: always
+    hikari:
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jpa:
+    hibernate:
+      ddl-auto: update  
+      naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+    generate-ddl: true
+    show-sql: false
+  flyway:
+    locations: classpath:/db/migrations
+    baseline-on-migrate: true
+logging:
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} %-5level %logger{36} - %msg%n'
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type:
+          descriptor:
+            sql:
+              BasicBinder: TRACE
