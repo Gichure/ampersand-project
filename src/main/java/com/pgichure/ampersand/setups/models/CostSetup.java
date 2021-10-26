@@ -1,6 +1,8 @@
 package com.pgichure.ampersand.setups.models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,6 +13,8 @@ import javax.persistence.Table;
 
 import com.pgichure.ampersand.utils.Auditable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Table(name ="tbl_cost_setups")
 @Entity
+@Builder
+@AllArgsConstructor
 public class CostSetup extends Auditable<String> implements Serializable{/**
 	 * 
 	 */
@@ -31,7 +37,16 @@ public class CostSetup extends Auditable<String> implements Serializable{/**
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "setup_id")
+	@Column(name = "setup_id", nullable = false)
     private Long id;
+	
+	@Column(name = "date_from", nullable = false)
+    private LocalDate dateFrom;
+	
+	@Column(name = "date_to", nullable = false)
+    private LocalDate dateTo;
+	
+	@Column(name = "cost_per_unit", nullable = false)
+    private BigDecimal costPerUnit;
 
 }

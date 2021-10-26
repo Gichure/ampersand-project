@@ -42,7 +42,7 @@ public class DocumentationConfiguration {
 	}
 	
 	private ApiInfo apiMetaData() {
-		return new ApiInfoBuilder().title("Ampersand Software Engineer Project APIs")
+		return new ApiInfoBuilder().title("Ampersand Software Engineer Project in APIs")
 				.description("Ampersand Software Engineer Project APIs")
 				.contact(DEFAULT_CONTACT)
 				.version("1.0.0").build();

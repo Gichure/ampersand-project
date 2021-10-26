@@ -18,6 +18,8 @@ import com.pgichure.ampersand.setups.models.Driver;
 import com.pgichure.ampersand.setups.models.Station;
 import com.pgichure.ampersand.utils.Auditable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -31,7 +33,9 @@ import lombok.RequiredArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Table(name ="tbl_swapping_logs")
 @Entity
-public class SwappingLog extends Auditable<String> implements Serializable{/**
+@Builder
+@AllArgsConstructor
+public class Swap extends Auditable<String> implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;

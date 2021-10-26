@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.pgichure.ampersand.utils.Auditable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +30,8 @@ import lombok.RequiredArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Table(name ="tbl_transactions")
 @Entity
+@Builder
+@AllArgsConstructor
 public class Transaction extends Auditable<String> implements Serializable{/**
 	 * 
 	 */
@@ -43,7 +47,7 @@ public class Transaction extends Auditable<String> implements Serializable{/**
 	
 	@ManyToOne
 	@JoinColumn(name = "log_id", nullable = false)
-	private SwappingLog swap;
+	private Swap swap;
 	
 	@Column(name = "units_used", nullable = false)
 	private BigDecimal units;

@@ -17,6 +17,8 @@ import javax.persistence.Table;
 
 import com.pgichure.ampersand.utils.Auditable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +32,8 @@ import lombok.RequiredArgsConstructor;
 @EqualsAndHashCode(callSuper=false)
 @Table(name ="tbl_registered_drivers")
 @Entity
+@Builder
+@AllArgsConstructor
 public class Driver extends Auditable<String> implements Serializable{/**
 	 * 
 	 */

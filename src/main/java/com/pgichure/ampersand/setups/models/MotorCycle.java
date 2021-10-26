@@ -13,6 +13,8 @@ import javax.persistence.Table;
 
 import com.pgichure.ampersand.utils.Auditable;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +28,8 @@ import lombok.RequiredArgsConstructor;
 @Table(name ="tbl_motor_cycles")
 @EqualsAndHashCode(callSuper=false)
 @Entity
+@Builder
+@AllArgsConstructor
 public class MotorCycle extends Auditable<String> implements Serializable{/**
 	 * 
 	 */
