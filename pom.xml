@@ -93,6 +93,7 @@
       <artifactId>urm-maven-plugin</artifactId>
       <version>1.4.8</version>
       <configuration>
+      	<outputDirectory>${project.basedir}/target</outputDirectory>
         <packages>
           <param>com.pgichure.ampersand.setups.models</param>
           <param>com.pgichure.ampersand.operations.models</param>
@@ -115,6 +116,18 @@
          <artifactId>maven-pmd-plugin</artifactId>
          <version>3.13.0</version>
      </plugin>
+     <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-javadoc-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>attach-javadocs</id>
+					<goals>
+						<goal>jar</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
 	</plugins>
   </build>
 </project>

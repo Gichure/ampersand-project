@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pgichure.ampersand.setups.dtos.MotorCycleDto;
+import com.pgichure.ampersand.setups.dtos.MotorCycleResponseDto;
 import com.pgichure.ampersand.setups.models.MotorCycle;
 import com.pgichure.ampersand.setups.services.MotorCycleServiceI;
 
@@ -61,9 +62,33 @@ public class MotorCycleController {
 		}
 	}
 	
+	@PostMapping(value = "/{id}")
+	@ResponseStatus(value = HttpStatus.CREATED)
+	@ApiOperation(value = "Assign of a motor cycle to a driver", notes = "Returns assigned motor cycle details.",response = MotorCycleDto.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully assigned the motor cycle."),
+			@ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+			@ApiResponse(code = 500, message = "The server encountered an error")
+	})
+	public ResponseEntity<MotorCycleDto> assign(
+			@ApiParam(value = "The assignment details.", required = true)
+			@RequestBody MotorCycleDto motorCycle,
+			@ApiParam(value = "The ID of the motor cycle to assign.", required = true)
+			@PathVariable("id") Long id) {
+		try {
+			motorCycle = service.assign(motorCycle, id);
+			return new ResponseEntity<MotorCycleDto>(motorCycle, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<MotorCycleDto>(motorCycle, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
-	@ApiOperation(value = "Fetch motor cycle using ID", response = MotorCycleDto.class)
+	@ApiOperation(value = "Fetch motor cycle using ID", response = MotorCycleResponseDto.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved the record"),
 			@ApiResponse(code = 400, message = "Bad Request"),
@@ -72,18 +97,18 @@ public class MotorCycleController {
 			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<MotorCycleDto> findById(
+	public ResponseEntity<MotorCycleResponseDto> findById(
 			@ApiParam(value = "The ID of the motor cycle to query.", required = true)
 			@PathVariable("id") Long id) {
-		MotorCycleDto motorCycle = MotorCycleDto.builder()
+		MotorCycleResponseDto motorCycle = MotorCycleResponseDto.builder()
 				.build();
 		try {
 			motorCycle = service.findById(id);
-			return new ResponseEntity<MotorCycleDto>(motorCycle, HttpStatus.FOUND);
+			return new ResponseEntity<MotorCycleResponseDto>(motorCycle, HttpStatus.FOUND);
 		}catch (NoSuchElementException e) {
-			return new ResponseEntity<MotorCycleDto>(motorCycle, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<MotorCycleResponseDto>(motorCycle, HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
-			return new ResponseEntity<MotorCycleDto>(motorCycle, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<MotorCycleResponseDto>(motorCycle, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
@@ -98,15 +123,15 @@ public class MotorCycleController {
 			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<List<MotorCycleDto>> findByAll() {
-		List<MotorCycleDto> cycles = new ArrayList<MotorCycleDto>();
+	public ResponseEntity<List<MotorCycleResponseDto>> findByAll() {
+		List<MotorCycleResponseDto> cycles = new ArrayList<MotorCycleResponseDto>();
 		try {
 			cycles = service.findAll();
-			return new ResponseEntity<List<MotorCycleDto>>(cycles, HttpStatus.OK);
+			return new ResponseEntity<List<MotorCycleResponseDto>>(cycles, HttpStatus.OK);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<List<MotorCycleDto>>(cycles, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<MotorCycleResponseDto>>(cycles, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

@@ -1,7 +1,7 @@
 package com.pgichure.ampersand.operations.dtos;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import com.pgichure.ampersand.operations.models.Transaction;
 
@@ -26,7 +26,7 @@ public class TransactionDto {
 	private Long id;
 	
 	@ApiModelProperty(name = "transaction_date", notes = "The transaction date", required = true)
-	private LocalDate transactionDate;
+	private Date transactionDate;
 	
 	@ApiModelProperty(name = "swap_id", notes = "The transaction's swap identifier", required = true)
 	private Long swapId;
@@ -45,23 +45,5 @@ public class TransactionDto {
 	
 	@ApiModelProperty(name = "net_amount", notes = "The net amount of the transaction", required = true)
 	private BigDecimal net_amount;
-	
-	
-	/**
-	 * This method casts the {@link TransactionDto} class to its {@link Transaction} entity class
-	 * @return {@link Transaction}
-	 */
-	
-	public Transaction getEntity() {
-		return Transaction.builder()
-				.charges(this.getCharges())
-				.costPerUnit(this.getCost_per_unit())
-				.grossAmount(this.getGross_amount())
-				.id(this.getId())
-				.netAmount(this.getNet_amount())
-				.transactionDate(this.getTransactionDate())
-				.units(this.getUnits())
-				.build();
-	}
 	
 }

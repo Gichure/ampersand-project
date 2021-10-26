@@ -2,7 +2,7 @@ package com.pgichure.ampersand.operations.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.pgichure.ampersand.operations.dtos.TransactionDto;
-import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -33,53 +32,60 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Builder
 @AllArgsConstructor
-public class Transaction extends Auditable<String> implements Serializable{/**
+public class Transaction implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The {@link Transaction} unique identifier
+	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "transaction_id", nullable = false)
     private Long id;
 	
+	/**
+	 * The transaction date
+	 */
 	@Column(name = "transaction_date", nullable = false)
-	private LocalDate transactionDate;
+	private Date transactionDate;
 	
+	/**
+	 * The {@link Swap} associated with the transaction
+	 */
 	@ManyToOne
-	@JoinColumn(name = "log_id", nullable = false)
+	@JoinColumn(name = "swap_id", nullable = false)
 	private Swap swap;
 	
+	/**
+	 * The transaction units of charge
+	 */
 	@Column(name = "units_used", nullable = false)
 	private BigDecimal units;
 	
+	/**
+	 * The cost per unit as at time of transaction
+	 */
 	@Column(name = "cost_per_unit", nullable = false)
 	private BigDecimal costPerUnit;
 
+	/**
+	 * The transaction gross amount
+	 */
 	@Column(name = "gross_amount", nullable = false)
 	private BigDecimal grossAmount;
 	
+	/**
+	 * The transaction charges
+	 */
 	@Column(name = "charges", nullable = false)
 	private BigDecimal charges;
 	
+	/**
+	 * The transaction net amount
+	 */
 	@Column(name = "net_amount", nullable = false)
 	private BigDecimal netAmount;
-	
-	/**
-	 * This method casts the {@link Transaction} entity class to its {@link TransactionDto}
-	 * @return {@link TransactionDto}
-	 */
-	public TransactionDto getDto() {
-		return TransactionDto.builder()
-				.charges(this.getCharges())
-				.cost_per_unit(this.getCostPerUnit())
-				.gross_amount(this.getGrossAmount())
-				.id(this.getId())
-				.net_amount(this.getNetAmount())
-				.swapId(this.getSwap() == null ? null : this.getSwap().getId())
-				.transactionDate(this.getTransactionDate())
-				.units(this.getUnits())
-				.build();
-	}
 	
 }

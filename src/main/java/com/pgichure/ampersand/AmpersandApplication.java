@@ -2,6 +2,7 @@ package com.pgichure.ampersand;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 /**
  * @author Paul
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * <p>This is the main entry class to the application
  *
  */
+@EnableJpaAuditing
 @SpringBootApplication
 public class AmpersandApplication {
 	

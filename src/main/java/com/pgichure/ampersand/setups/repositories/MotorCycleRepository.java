@@ -10,4 +10,5 @@ import com.pgichure.ampersand.setups.models.MotorCycle;
  */
 public interface MotorCycleRepository extends JpaRepository<MotorCycle, Long>{
 
+	public MotorCycle findByIssuedToId(Long driverId);
 }

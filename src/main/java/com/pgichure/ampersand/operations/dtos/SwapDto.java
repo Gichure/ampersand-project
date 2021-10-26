@@ -1,7 +1,7 @@
 package com.pgichure.ampersand.operations.dtos;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import com.pgichure.ampersand.operations.models.Swap;
 
@@ -25,13 +25,13 @@ public class SwapDto {
 	private Long id;
 	
 	@ApiModelProperty(name = "date_issued", notes = "The date of issue", required = true)
-	private LocalDate date_issued;
+	private Date date_issued;
 	
 	@ApiModelProperty(name = "date_returned", notes = "The date of return", required = true)
-	private LocalDate date_returned;
+	private Date date_returned;
 	
-	@ApiModelProperty(name = "driver_id", notes = "The ID of the driver issued to", required = true)
-	private Long driver_id;
+	@ApiModelProperty(name = "bike_id", notes = "The ID of the motor cycle issued to", required = true)
+	private Long bike_id;
 	
 	@ApiModelProperty(name = "battery_id", notes = "The ID of the battery issued", required = true)
 	private Long battery_id;
@@ -50,22 +50,5 @@ public class SwapDto {
 	
 	@ApiModelProperty(name = "return_mileage", notes = "The motor cycle mileage count at return")
 	private BigDecimal return_mileage;
-	
-	/**
-	 * This method casts the {@link SwapDto} class to its {@link Swap} entity class
-	 * @return {@link Swap}
-	 */
-	
-	public Swap getEntity() {
-		return Swap.builder()
-				.chargeIssueLevel(this.getCharge_issue_level())
-				.chargeReturnLevel(this.getCharge_return_level())
-				.dateIssued(this.getDate_issued())
-				.dateReturned(this.getDate_returned())
-				.id(this.getId())
-				.issuanceMileage(this.getIssuance_mileage())
-				.returnMileage(this.getReturn_mileage())
-				.build();
-	}
 	
 }

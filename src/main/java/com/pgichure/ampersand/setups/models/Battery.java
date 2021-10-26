@@ -7,10 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.pgichure.ampersand.setups.dtos.BatteryDto;
-import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,7 +30,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Builder
 @AllArgsConstructor
-public class Battery extends Auditable<String> implements Serializable{/**
+public class Battery implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -63,15 +64,10 @@ public class Battery extends Auditable<String> implements Serializable{/**
     private String capacity;
 	
 	/**
-	 * This method casts the {@link Battery} entity class to its {@link BatteryDto}
-	 * @return {@link BatteryDto}
+	 * The current motor cycle
 	 */
-	public BatteryDto getDto() {
-		return BatteryDto.builder()
-				.battery_type(this.getBatteryType())
-				.capacity(this.getCapacity())
-				.id(this.getId())
-				.serial_number(this.getSerialNumber())
-				.build();
-	}
+	@ManyToOne
+	@JoinColumn(name = "cycle_id")
+    private MotorCycle motorCycle;
+	
 }

@@ -33,7 +33,7 @@ import lombok.RequiredArgsConstructor;
  */
 @RestController
 @RequestMapping(value = "/transactions")
-@Api(tags = {"Operations & Trasactions"}, description = "Operations and System Transactions")
+@Api(tags = {"Operations & Transactions"}, description = "Operations and System Transactions")
 @RequiredArgsConstructor
 public class TransactionController {
 	

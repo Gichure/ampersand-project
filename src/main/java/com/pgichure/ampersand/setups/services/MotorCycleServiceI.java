@@ -3,6 +3,7 @@ package com.pgichure.ampersand.setups.services;
 import java.util.List;
 
 import com.pgichure.ampersand.setups.dtos.MotorCycleDto;
+import com.pgichure.ampersand.setups.dtos.MotorCycleResponseDto;
 import com.pgichure.ampersand.setups.models.MotorCycle;
 
 /**
@@ -17,8 +18,9 @@ public interface MotorCycleServiceI {
 	 * @param the {@link MotorCycle} to save
 	 * 
 	 *  @return the saved {@link MotorCycle}rCycle} record
+	 * @throws Exception 
 	 */
-	public MotorCycleDto save(MotorCycleDto motorCycle);
+	public MotorCycleDto save(MotorCycleDto motorCycle) throws Exception;
 	
 	
 	/**
@@ -48,13 +50,23 @@ public interface MotorCycleServiceI {
 	 * @return the {@link MotorCycle} record found
 	 * @throws Exception 
 	 */
-	public MotorCycleDto findById(Long id) throws Exception;
+	public MotorCycleResponseDto findById(Long id) throws Exception;
 	
 	/**
 	 * Get a list of all {@link MotorCycle}
 	 * 
 	 * @return the list of all {@link MotorCycle}
+	 * @throws Exception 
 	 */
-	public List<MotorCycleDto> findAll();
+	public List<MotorCycleResponseDto> findAll() throws Exception;
+
+
+	/**
+	 * @param motorCycle the motor cycle to assign
+	 * @param id
+	 * @return MotorCycleDto
+	 * @throws Exception 
+	 */
+	public MotorCycleDto assign(MotorCycleDto motorCycle, Long id) throws Exception;
 	
 }

@@ -1,6 +1,6 @@
 package com.pgichure.ampersand.setups.dtos;
 
-import com.pgichure.ampersand.setups.models.Station;
+import java.io.Serializable;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -16,7 +16,13 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 @ApiModel(value = "Station", description = "Station details")
-public class StationDto {
+public class StationDto implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 
 	@ApiModelProperty(name = "id", notes = "The unique identifier")
 	private Long id;
@@ -35,21 +41,5 @@ public class StationDto {
 	
 	@ApiModelProperty(name = "building", notes = "The building where the station is housed")
     private String building;
-	
-	/**
-	 * This method casts the {@link StationDto} class to its {@link Station} entity class
-	 * @return {@link Station}
-	 */
-	
-	public Station getEntity() {
-		return Station.builder()
-				.building(this.getBuilding())
-				.coordinates(this.getCoordinates())
-				.id(this.getId())
-				.name(this.getName())
-				.street(this.getStreet())
-				.town(this.getTown())
-				.build();
-	}
 	
 }

@@ -2,7 +2,7 @@ package com.pgichure.ampersand.operations.models;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,9 +15,8 @@ import javax.persistence.Table;
 
 import com.pgichure.ampersand.operations.dtos.SwapDto;
 import com.pgichure.ampersand.setups.models.Battery;
-import com.pgichure.ampersand.setups.models.Driver;
+import com.pgichure.ampersand.setups.models.MotorCycle;
 import com.pgichure.ampersand.setups.models.Station;
-import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,63 +35,74 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Builder
 @AllArgsConstructor
-public class Swap extends Auditable<String> implements Serializable{/**
+public class Swap implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The {@link Swap} unique identifier
+	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "log_id")
     private Long id;
 	
+	/**
+	 * The swap date
+	 */
 	@Column(name = "date_issued", nullable = false)
-	private LocalDate dateIssued;
+	private Date dateIssued;
 	
+	/**
+	 * The swap return date
+	 */
 	@Column(name = "date_returned")
-	private LocalDate dateReturned;
+	private Date dateReturned;
 	
+	/**
+	 * The motor bike the battery was issued to
+	 */
 	@ManyToOne
-	@JoinColumn(name = "driver_id", nullable = false)
-	private Driver issuedTo;
+	@JoinColumn(name = "bike_id", nullable = false)
+	private MotorCycle issuedTo;
 	
+	/**
+	 * The battery that was issued out
+	 */
 	@ManyToOne
 	@JoinColumn(name = "battery_id", nullable = false)
 	private Battery batteryIssued;
 	
+	/**
+	 * The issuing station
+	 */
 	@ManyToOne
 	@JoinColumn(name = "station_id", nullable = false)
 	private Station station;
 	
+	/**
+	 * The battery charge level at time of issue
+	 */
 	@Column(name = "charge_issue_level", nullable = false)
 	private BigDecimal chargeIssueLevel;
 	
+	/**
+	 * The battery charge level at time of return
+	 */
 	@Column(name = "charge_return_level")
 	private BigDecimal chargeReturnLevel;
 	
+	/**
+	 * The motor cycle mileage at time of issue
+	 */
 	@Column(name = "issuance_mileage", nullable = false)
 	private BigDecimal issuanceMileage;
 	
+	/**
+	 * The motor cycle mileage at time of return
+	 */
 	@Column(name = "return_mileage")
 	private BigDecimal returnMileage;
 	
-	/**
-	 * This method casts the {@link Swap} entity class to its {@link SwapDto}
-	 * @return {@link SwapDto}
-	 */
-	
-	public SwapDto getDto() {
-		return SwapDto.builder()
-				.charge_issue_level(this.getChargeIssueLevel())
-				.charge_return_level(this.getChargeReturnLevel())
-				.date_issued(this.getDateIssued())
-				.date_returned(this.getDateReturned())
-				.id(this.getId())
-				.issuance_mileage(this.getIssuanceMileage())
-				.return_mileage(this.getReturnMileage())
-				.battery_id(this.getBatteryIssued() == null ? null : this.getBatteryIssued().getId())
-				.driver_id(this.getIssuedTo() == null ? null : this.getIssuedTo().getId())
-				.station_id(this.getStation() == null ? null : this.getStation().getId())
-				.build();
-	}
 }

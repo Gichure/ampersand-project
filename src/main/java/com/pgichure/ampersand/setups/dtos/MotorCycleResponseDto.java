@@ -14,16 +14,16 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 @ApiModel(value = "Motor Cycle", description = "Motor Cycle details")
-public class MotorCycleDto {
+public class MotorCycleResponseDto {
 
 	@ApiModelProperty(name = "id", notes = "The unique identifier")
 	private Long id;
 	
-	@ApiModelProperty(name = "driverId", notes = "The driver's ID")
-	private Long driverId;
+	@ApiModelProperty(name = "driver", notes = "The driver")
+	private DriverDto driver;
 	
-	@ApiModelProperty(name = "batteryId", notes = "The current assigne battery ID")
-	private Long batteryId;
+	@ApiModelProperty(name = "battery", notes = "The current battery")
+	private BatteryDto battery;
 	
 	@ApiModelProperty(name = "make", notes = "The motor cycle's make")
     private String make;
@@ -36,6 +36,5 @@ public class MotorCycleDto {
 	
 	@ApiModelProperty(name = "chassisNumber", notes = "The motor cycle's chassis number")
     private String chassisNumber;
-	
 	
 }

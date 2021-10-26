@@ -2,6 +2,7 @@ package com.pgichure.ampersand.setups.services;
 
 import java.util.List;
 
+import com.pgichure.ampersand.operations.dtos.SwapDto;
 import com.pgichure.ampersand.setups.dtos.BatteryDto;
 import com.pgichure.ampersand.setups.models.Battery;
 
@@ -17,8 +18,9 @@ public interface BatteryServiceI {
 	 * @param the {@link Battery} to save
 	 * 
 	 *  @return the saved {@link Battery} record
+	 * @throws Exception 
 	 */
-	public BatteryDto save(BatteryDto battery);
+	public BatteryDto save(BatteryDto battery) throws Exception;
 	
 	
 	/**
@@ -56,6 +58,23 @@ public interface BatteryServiceI {
 	 * @return the list of all {@link Battery}
 	 */
 	public List<BatteryDto> findAll();
+
+
+	/**
+	 *  Battery Swap
+	 * @param Long batteryId
+	 * @param SwapDto dto
+	 * 
+	 * @return BatteryDto
+	 */
+	public BatteryDto swap(Long batteryId, SwapDto dto) throws Exception;
+	
+	/**
+	 *  Allocate a Battery to bike
+	 * @param swap
+	 * @return {@link SwapDto}
+	 */
+	public BatteryDto allocate(Long cycleId, Long batteryId) throws Exception;
 	
 
 }

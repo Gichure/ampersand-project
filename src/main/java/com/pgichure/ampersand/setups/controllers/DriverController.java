@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.pgichure.ampersand.setups.dtos.DriverDto;
+import com.pgichure.ampersand.setups.dtos.DriverResponseDto;
 import com.pgichure.ampersand.setups.models.Driver;
 import com.pgichure.ampersand.setups.services.DriverServiceI;
 
@@ -108,6 +109,32 @@ public class DriverController {
 		catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity<List<DriverDto>>(drivers, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@GetMapping(value = "/{id}/consumption")
+	@ResponseStatus(value = HttpStatus.OK)
+	@ApiOperation(value = "Fetch driver's consumption using ID", response = DriverResponseDto.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully retrieved the record"),
+			@ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
+			@ApiResponse(code = 500, message = "The server encountered an error")
+	})
+	public ResponseEntity<DriverResponseDto> findConsumptionById(
+			@ApiParam(value = "The ID of the driver to query.", required = true)
+			@PathVariable("id") Long id) {
+		DriverResponseDto driver = DriverResponseDto.builder()
+				.build();
+		try {
+			driver = service.getTotalConsumption(id);
+			return new ResponseEntity<DriverResponseDto>(driver, HttpStatus.FOUND);
+		}catch (NoSuchElementException e) {
+			return new ResponseEntity<DriverResponseDto>(driver, HttpStatus.NOT_FOUND);
+		} catch (Exception e) {
+			return new ResponseEntity<DriverResponseDto>(driver, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	

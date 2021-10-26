@@ -27,26 +27,18 @@ public class TransactionService implements TransactionServiceI{
 	
 	@Override
 	public TransactionDto save(TransactionDto dto) throws Exception{
-		Swap swap = swapRepository.findById(dto.getSwapId())
-				.orElseThrow(()-> new Exception("Resource not found for the ID provided"));
-		Transaction transaction = dto.getEntity();
-		transaction.setSwap(swap);
+		Transaction transaction = this.getEntity(dto);
 		transaction = repository.save(transaction);
-		return transaction.getDto();
+		return this.getDto(transaction);
 	}
 
 	@Override
 	public TransactionDto update(TransactionDto dto, Long id) throws Exception{
-		
-		Swap swap = swapRepository.findById(id)
-				.orElseThrow(()-> new Exception("Resource not found for the ID provided"));
-		
 		Transaction transaction = repository.findById(id)
 				.orElseThrow(()-> new Exception("Resource not found for the ID provided"));
-		transaction = dto.getEntity();
-		transaction.setSwap(swap);		
+		transaction = this.getEntity(dto);
 		transaction = repository.save(transaction);
-		return transaction.getDto();
+		return this.getDto(transaction);
 	}
 
 	@Override
@@ -61,14 +53,54 @@ public class TransactionService implements TransactionServiceI{
 		Transaction transaction = repository.findById(id)
 				.orElseThrow(()-> new Exception("Resource not found for the ID provided"));
 	
-		return transaction.getDto();
+		return this.getDto(transaction);
 	}
 
 	@Override
 	public List<TransactionDto> findAll() {
 		List<Transaction> transactions = repository.findAll();
-		return transactions.stream().map(transaction -> transaction.getDto())
+		return transactions.stream().map(transaction ->this.getDto(transaction))
                 .collect(Collectors.toList());
+	}
+	
+	/**
+	 * This method casts the {@link Transaction} entity class to its {@link TransactionDto}
+	 * @return {@link TransactionDto}
+	 */
+	private TransactionDto getDto(Transaction transaction) {
+		
+		return TransactionDto.builder()
+				.charges(transaction.getCharges())
+				.cost_per_unit(transaction.getCostPerUnit())
+				.gross_amount(transaction.getGrossAmount())
+				.id(transaction.getId())
+				.net_amount(transaction.getNetAmount())
+				.swapId(transaction.getSwap() == null ? null : transaction.getSwap().getId())
+				.transactionDate(transaction.getTransactionDate())
+				.units(transaction.getUnits())
+				.build();
+	}
+	
+	/**
+	 * This method casts the {@link TransactionDto} class to its {@link Transaction} entity class
+	 * @return {@link Transaction}
+	 */
+	
+	private Transaction getEntity(TransactionDto dto) throws Exception {
+		
+		Swap swap = swapRepository.findById(dto.getSwapId())
+				.orElseThrow(()-> new Exception("Resource not found for the ID provided"));
+		
+		return Transaction.builder()
+				.charges(dto.getCharges())
+				.costPerUnit(dto.getCost_per_unit())
+				.grossAmount(dto.getGross_amount())
+				.id(dto.getId())
+				.netAmount(dto.getNet_amount())
+				.transactionDate(dto.getTransactionDate())
+				.units(dto.getUnits())
+				.swap(swap)
+				.build();
 	}
 	
 }

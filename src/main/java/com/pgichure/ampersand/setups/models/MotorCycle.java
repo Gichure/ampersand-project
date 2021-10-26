@@ -11,9 +11,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.pgichure.ampersand.setups.dtos.MotorCycleDto;
-import com.pgichure.ampersand.utils.Auditable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,45 +28,57 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Builder
 @AllArgsConstructor
-public class MotorCycle extends Auditable<String> implements Serializable{/**
+public class MotorCycle implements Serializable{
+	
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * The {@link MotorCycle} unique identifier
+	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "cycle_id", nullable = false)
     private Long id;
 	
+	/**
+	 * The {@link Driver} assigned the motor bike
+	 */
 	@ManyToOne
 	@JoinColumn(name = "driver_id")
 	private Driver issuedTo;
 	
+	/**
+	 * The {@link Battery} currently used by the motor bike
+	 */
+	@ManyToOne
+	@JoinColumn(name = "battery_id")
+	private Battery currentBattery;
+	
+	/**
+	 * The make of the motor cycle
+	 */
 	@Column(name = "make", nullable = false)
     private String make;
 	
+	/**
+	 * The model of the motor cycle
+	 */
 	@Column(name = "model", nullable = false)
     private String model;
 	
+	/**
+	 * The colour of the motor cycle
+	 */
 	@Column(name = "colour", nullable = false)
     private String colour;
 	
+	/**
+	 * The chassis number of the motor cycle
+	 */
 	@Column(name = "chassis_number", nullable = false)
     private String chassisNumber;
-	
-	/**
-	 * This method casts the {@link MotorCycle} entity class to its {@link MotorCycleDto}
-	 * @return {@link MotorCycleDto}
-	 */
-	public MotorCycleDto getDto() {
-		return MotorCycleDto.builder()
-				.id(this.getId())
-				.chassisNumber(this.getChassisNumber())
-				.colour(this.getColour())
-				.driverId(this.getIssuedTo() == null ? null : this.getIssuedTo().getId())
-				.make(this.getMake())
-				.model(this.getModel())
-				.build();
-	}
 	
 }

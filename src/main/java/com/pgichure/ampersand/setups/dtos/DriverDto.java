@@ -1,7 +1,5 @@
 package com.pgichure.ampersand.setups.dtos;
 
-import com.pgichure.ampersand.setups.models.Driver;
-
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -35,21 +33,5 @@ public class DriverDto {
 	
 	@ApiModelProperty(name = "locality", notes = "The locality of the driver", required = true)
     private String locality;
-	
-	/**
-	 * This method casts the {@link DriverDto} class to its {@link Driver} entity class
-	 * @return {@link Driver}
-	 */
-	public Driver getEntity() {
-		
-		return Driver.builder()
-				.id(this.getId())
-				.idNumber(this.getIdentification_number())
-				.licenseNumber(this.getLicense_number())
-				.locality(this.getLocality())
-				.name(this.getName())
-				.town(this.getTown())
-				.build();
-	}
 	
 }

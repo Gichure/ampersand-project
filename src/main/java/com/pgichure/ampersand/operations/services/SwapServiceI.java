@@ -1,5 +1,6 @@
 package com.pgichure.ampersand.operations.services;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.pgichure.ampersand.operations.dtos.SwapDto;
@@ -57,5 +58,19 @@ public interface SwapServiceI {
 	 * @return the list of all swaps
 	 */
 	public List<SwapDto> findAll();
+	
+	/**
+	 * Get a list of all swaps done by a given driver
+	 * 
+	 * @return the list of all swaps done by a given driver
+	 */
+	public List<SwapDto> findAllByIssuedToId(Long driverId);
+	
+	/**
+	 * Get a total consumption by a driver
+	 * 
+	 * @return a total consumption by a driver
+	 */
+	public BigDecimal getTotalConsumptionByIssuedToId(Long driverId);
 	
 }

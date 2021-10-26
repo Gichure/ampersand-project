@@ -1,5 +1,6 @@
 package com.pgichure.ampersand.setups.services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.pgichure.ampersand.setups.dtos.CostSetupDto;
@@ -56,5 +57,13 @@ public interface CostSetupServiceI {
 	 * @return the list of all setups
 	 */
 	public List<CostSetupDto> findAll();
+	
+	
+	/**
+	 * Get the effective cost setup
+	 * 
+	 * @return the setup
+	 */
+	public CostSetup findAllAsAt(Date asAt);
 	
 }

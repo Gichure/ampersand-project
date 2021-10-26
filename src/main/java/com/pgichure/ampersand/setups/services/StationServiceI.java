@@ -17,8 +17,9 @@ public interface StationServiceI {
 	 * @param the {@link Station} to save
 	 * 
 	 *  @return the saved {@link Station} record
+	 * @throws Exception 
 	 */
-	public StationDto save(StationDto station);
+	public StationDto save(StationDto station) throws Exception;
 	
 	
 	/**

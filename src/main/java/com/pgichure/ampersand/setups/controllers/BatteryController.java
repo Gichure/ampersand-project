@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.pgichure.ampersand.operations.dtos.SwapDto;
 import com.pgichure.ampersand.setups.dtos.BatteryDto;
 import com.pgichure.ampersand.setups.models.Battery;
 import com.pgichure.ampersand.setups.services.BatteryServiceI;
@@ -55,6 +56,56 @@ public class BatteryController {
 			@RequestBody BatteryDto battery) {
 		try {
 			battery = service.save(battery);
+			return new ResponseEntity<BatteryDto>(battery, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PostMapping(value = "/{id}")
+	@ResponseStatus(value = HttpStatus.CREATED)
+	@ApiOperation(value = "Saving of a swap", notes = "Returns saved swap details.",response = BatteryDto.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully swapped the battery."),
+			@ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+			@ApiResponse(code = 500, message = "The server encountered an error")
+	})
+	public ResponseEntity<BatteryDto> swap(
+			@ApiParam(value = "The swapping details.", required = true)
+			@RequestBody SwapDto swap,
+			@ApiParam(value = "The ID of the motor bike", required = true)
+			@PathVariable("id") Long id) {
+		BatteryDto battery = BatteryDto.builder().build();
+		try {
+			battery = service.swap(id, swap);
+			return new ResponseEntity<BatteryDto>(battery, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	@PostMapping(value = "/{id}/allocate/{cycleId}")
+	@ResponseStatus(value = HttpStatus.CREATED)
+	@ApiOperation(value = "Initial assigning to a motor cycle", notes = "Returns saved swap details.",response = BatteryDto.class)
+	@ApiResponses(value = {
+			@ApiResponse(code = 200, message = "Successfully assigned the battery."),
+			@ApiResponse(code = 400, message = "Bad Request"),
+			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
+			@ApiResponse(code = 500, message = "The server encountered an error")
+	})
+	public ResponseEntity<BatteryDto> assign(
+			@ApiParam(value = "The ID of the battery to assign.", required = true)
+			@PathVariable("id") Long id,
+			@ApiParam(value = "The ID of the motor cycle to assign to.", required = true)
+			@PathVariable("cycleId") Long cycleId) {
+		BatteryDto battery = BatteryDto.builder().build();
+		try {
+			battery = service.allocate(cycleId, id);
 			return new ResponseEntity<BatteryDto>(battery, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);

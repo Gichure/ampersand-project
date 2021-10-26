@@ -26,18 +26,20 @@ import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author Paul
  *<p>The endpoint controller class for the {@link Station} class
  */
+@Slf4j
 @RestController
 @RequestMapping(value = "/stations")
 @Api(tags = {"System Setups"}, description = "Operations relations system setups")
 @RequiredArgsConstructor
 public class StationController {
 
-	private StationServiceI service;
+	private final StationServiceI service;
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)

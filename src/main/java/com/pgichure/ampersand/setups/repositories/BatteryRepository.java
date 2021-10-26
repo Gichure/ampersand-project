@@ -6,7 +6,7 @@ import com.pgichure.ampersand.setups.models.Battery;
 
 /**
  * @author Paul
- * <p> {@link Battery} data access object
+ * <p>Battery entity data access object
  */
 public interface BatteryRepository extends JpaRepository<Battery, Long>{
 

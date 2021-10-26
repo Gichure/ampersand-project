@@ -9,9 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.pgichure.ampersand.setups.dtos.StationDto;
-import com.pgichure.ampersand.utils.Auditable;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -31,46 +28,47 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Builder
 @AllArgsConstructor
-public class Station extends Auditable<String> implements Serializable{/**
+public class Station implements Serializable{/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * The {@link Station} unique identifier
+	 */
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "station_id", nullable = false)
     private Long id;
 	
+	/**
+	 * The name of the station
+	 */
 	@Column(name = "name", nullable = false)
     private String name;
 	
+	/**
+	 * The location coordinates of the station
+	 */
 	@Column(name = "coordinates", nullable = false)
     private String coordinates;
 	
+	/**
+	 * The town of the station
+	 */
 	@Column(name = "town", nullable = false)
     private String town;
 	
+	/**
+	 * The street of the station
+	 */
 	@Column(name = "street", nullable = false)
     private String street;
 	
+	/**
+	 * The building of the station
+	 */
 	@Column(name = "building")
     private String building;
-	
-	/**
-	 * This method casts the {@link Station} entity class to its {@link StationDto}
-	 * @return {@link StationDto}
-	 */
-	
-	public StationDto getDto() {
-		
-		return StationDto.builder()
-				.building(this.getBuilding())
-				.coordinates(this.getCoordinates())
-				.id(this.getId())
-				.name(this.getName())
-				.street(this.getStreet())
-				.town(this.getTown())
-				.build();
-	}
 	
 }

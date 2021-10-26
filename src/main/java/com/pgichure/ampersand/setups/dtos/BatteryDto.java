@@ -30,16 +30,7 @@ public class BatteryDto {
 	@ApiModelProperty(name = "capacity", notes = "The battery voltage capacity", required = true)
     private String capacity;
 	
-	/**
-	 * This method casts the {@link BatteryDto} class to its {@link Battery} entity class
-	 * @return {@link Battery}
-	 */
-	public Battery getEntity() {
-		return Battery.builder()
-				.batteryType(this.getBattery_type())
-				.capacity(this.getCapacity())
-				.id(this.getId())
-				.serialNumber(this.getSerial_number())
-				.build();
-	}
+	@ApiModelProperty(name = "motor_cycle_id", notes = "The current motor cycle", required = true)
+    private Long motor_cycle_id;
+	
 }
