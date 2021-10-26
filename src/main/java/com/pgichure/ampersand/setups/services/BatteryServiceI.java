@@ -6,14 +6,14 @@ import com.pgichure.ampersand.setups.dtos.BatteryDto;
 
 /**
  * @author Paul
- * <p>The Battery service class
+ * <p>The Battery service class interface
  */
 public interface BatteryServiceI {
 	
 	/**
 	 * Saves a battery
 	 * 
-	 * @param the Battery to save
+	 * @param the battery to save
 	 * 
 	 *  @return the saved battery record
 	 */
