@@ -1,0 +1,542 @@
+{
+	"info": {
+		"_postman_id": "dc72eb56-0213-4706-b8f0-3ce320cf9e60",
+		"name": "Ampersand Software Engineer Project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Stations",
+			"item": [
+				{
+					"name": "Create a station",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"building\": \"ABC Building\",\r\n  \"coordinates\": \"36.2,25.6\",\r\n  \"name\":\"Station 1\",\r\n  \"street\": \"Big Street\",\r\n  \"town\": \"Kigali\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/stations",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"stations"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Stations",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:1212/stations",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"stations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Drivers",
+			"item": [
+				{
+					"name": "Create a driver",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"identification_number\": \"45858222\",\r\n  \"license_number\": \"A55252\",\r\n  \"locality\": \"Eastlands\",\r\n  \"name\": \"Paul Gichure\",\r\n  \"town\": \"Nairobi\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/drivers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get drivers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/drivers",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"drivers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get driver's consumption",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/drivers/2/consumption",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"drivers",
+								"2",
+								"consumption"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Motor Cycles",
+			"item": [
+				{
+					"name": "Create a motor cycle",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"chassisNumber\": \"1234567\",\r\n  \"colour\": \"Yellow\",\r\n  \"make\": \"Yamaha\",\r\n  \"model\": \"812\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/motor-cycles",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"motor-cycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Motor Cycles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"chassisNumber\": \"1234567\",\r\n  \"colour\": \"Yellow\",\r\n  \"make\": \"Yamaha\",\r\n  \"model\": \"812\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/motor-cycles",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"motor-cycles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign a motor cycle to driver",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"driverId\": 2,\r\n    \"make\": \"Yamaha\",\r\n    \"model\": \"812\",\r\n    \"colour\": \"Yellow\",\r\n    \"chassisNumber\": \"1234567\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/motor-cycles/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"motor-cycles",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Batteries",
+			"item": [
+				{
+					"name": "Create battery inventory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"battery_type\": \"Chroride\",\r\n  \"capacity\": \"2400\",\r\n  \"serial_number\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/batteries",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"batteries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create battery inventory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"battery_type\": \"Chroride\",\r\n  \"capacity\": \"2400\",\r\n  \"serial_number\": \"123456\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/batteries",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"batteries"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign battery to a motor cycle(Initial assignment)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/batteries/6/allocate/5",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"batteries",
+								"6",
+								"allocate",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Swap battery",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bike_id\": 5,\r\n  \"charge_issue_level\": 2400,\r\n  \"charge_return_level\": 1500,\r\n  \"date_issued\": \"2021-10-26T16:39:54.760Z\",\r\n  \"date_returned\": \"2021-10-26T16:39:54.760Z\",\r\n  \"issuance_mileage\": 0,\r\n  \"return_mileage\": 500,\r\n  \"station_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/batteries/9",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"batteries",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get batteries swaps",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"bike_id\": 5,\r\n  \"charge_issue_level\": 2400,\r\n  \"charge_return_level\": 1500,\r\n  \"date_issued\": \"2021-10-26T16:39:54.760Z\",\r\n  \"date_returned\": \"2021-10-26T16:39:54.760Z\",\r\n  \"issuance_mileage\": 0,\r\n  \"return_mileage\": 500,\r\n  \"station_id\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/swaps",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"swaps"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cost Setups",
+			"item": [
+				{
+					"name": "Create Cost Setup",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"charges\": 0,\r\n  \"cost_per_unit\": 1,\r\n  \"date_from\": \"2021-10-26T16:27:51.491Z\",\r\n  \"date_to\": \"2021-10-26T16:27:51.491Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/cost-setups",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"cost-setups"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Cost Setup",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"charges\": 0,\r\n  \"cost_per_unit\": 1,\r\n  \"date_from\": \"2021-10-26T16:27:51.491Z\",\r\n  \"date_to\": \"2021-10-26T16:27:51.491Z\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:1212/cost-setups",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"cost-setups"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transactions",
+			"item": [
+				{
+					"name": "Get transactions listing - money performance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:1212/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "1212",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
