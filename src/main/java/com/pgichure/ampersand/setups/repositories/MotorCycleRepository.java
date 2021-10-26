@@ -6,7 +6,7 @@ import com.pgichure.ampersand.setups.models.MotorCycle;
 
 /**
  * @author Paul
- * <p> @MotorCycle data access object
+ * <p> {@link MotorCycle} data access object
  */
 public interface MotorCycleRepository extends JpaRepository<MotorCycle, Long>{
 

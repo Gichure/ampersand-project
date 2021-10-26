@@ -1,5 +1,7 @@
 package com.pgichure.ampersand.setups.dtos;
 
+import com.pgichure.ampersand.setups.models.Battery;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -27,4 +29,17 @@ public class BatteryDto {
 	
 	@ApiModelProperty(name = "capacity", notes = "The battery voltage capacity", required = true)
     private String capacity;
+	
+	/**
+	 * This method casts the {@link BatteryDto} class to its {@link Battery} entity class
+	 * @return {@link Battery}
+	 */
+	public Battery getEntity() {
+		return Battery.builder()
+				.batteryType(this.getBattery_type())
+				.capacity(this.getCapacity())
+				.id(this.getId())
+				.serialNumber(this.getSerial_number())
+				.build();
+	}
 }

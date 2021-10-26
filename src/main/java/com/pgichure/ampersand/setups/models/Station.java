@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.setups.dtos.StationDto;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
@@ -54,5 +55,22 @@ public class Station extends Auditable<String> implements Serializable{/**
 	
 	@Column(name = "building")
     private String building;
+	
+	/**
+	 * This method casts the {@link Station} entity class to its {@link StationDto}
+	 * @return {@link StationDto}
+	 */
+	
+	public StationDto getDto() {
+		
+		return StationDto.builder()
+				.building(this.getBuilding())
+				.coordinates(this.getCoordinates())
+				.id(this.getId())
+				.name(this.getName())
+				.street(this.getStreet())
+				.town(this.getTown())
+				.build();
+	}
 	
 }

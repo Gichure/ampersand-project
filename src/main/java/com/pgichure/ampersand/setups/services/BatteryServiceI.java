@@ -3,53 +3,57 @@ package com.pgichure.ampersand.setups.services;
 import java.util.List;
 
 import com.pgichure.ampersand.setups.dtos.BatteryDto;
+import com.pgichure.ampersand.setups.models.Battery;
 
 /**
  * @author Paul
- * <p>The Battery service class interface
+ * <p>The {@link Battery} service class interface
  */
 public interface BatteryServiceI {
 	
 	/**
-	 * Saves a battery
+	 * Saves a {@link Battery}
 	 * 
-	 * @param the battery to save
+	 * @param the {@link Battery} to save
 	 * 
-	 *  @return the saved battery record
+	 *  @return the saved {@link Battery} record
 	 */
 	public BatteryDto save(BatteryDto battery);
 	
 	
 	/**
-	 * Updates a battery
+	 * Updates a {@link Battery}
 	 * 
-	 * @param battery details to update
-	 * @param id - the ID of the battery to update. Rejected if not provided
+	 * @param {@link Battery} details to update
+	 * @param id - the ID of the {@link Battery} to update. Rejected if not provided
 	 * 
-	 * @return the updated battery record
+	 * @return the updated {@link Battery} record
+	 * @throws Exception 
 	 */
-	public BatteryDto update(BatteryDto battery, Long id);
+	public BatteryDto update(BatteryDto battery, Long id) throws Exception;
 	
 	/**
-	 * Deletes a battery
+	 * Deletes a {@link Battery}
 	 * 
-	 * @param id - the ID of the battery to delete
+	 * @param id - the ID of the {@link Battery} to delete
+	 * @throws Exception 
 	 */
-	public void deleteById(Long id);
+	public void deleteById(Long id) throws Exception;
 	
 	/**
-	 * Finds a battery by ID
+	 * Finds a {@link Battery} by ID
 	 * 
-	 * @param id - the ID of the battery to find
+	 * @param id - the ID of the {@link Battery} to find
 	 * 
-	 * @return the battery record found
+	 * @return the {@link Battery} record found
+	 * @throws Exception 
 	 */
-	public BatteryDto findById(Long id);
+	public BatteryDto findById(Long id) throws Exception;
 	
 	/**
-	 * Get a list of all batteries
+	 * Get a list of all {@link Battery}
 	 * 
-	 * @return the list of all batteries
+	 * @return the list of all {@link Battery}
 	 */
 	public List<BatteryDto> findAll();
 	

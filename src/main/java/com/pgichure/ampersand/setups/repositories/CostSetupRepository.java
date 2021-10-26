@@ -6,7 +6,7 @@ import com.pgichure.ampersand.setups.models.CostSetup;
 
 /**
  * @author Paul
- * <p> @CostSetup data access object
+ * <p> {@link CostSetup} data access object
  */
 public interface CostSetupRepository extends JpaRepository<CostSetup, Long>{
 

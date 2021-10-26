@@ -3,10 +3,11 @@ package com.pgichure.ampersand.operations.services;
 import java.util.List;
 
 import com.pgichure.ampersand.operations.dtos.SwapDto;
+import com.pgichure.ampersand.operations.models.Swap;
 
 /**
  * @author Paul
- * <p>The Swap service class interface
+ * <p>The {@link Swap} service class interface
  */
 public interface SwapServiceI {
 
@@ -16,8 +17,9 @@ public interface SwapServiceI {
 	 * @param the swap to save
 	 * 
 	 *  @return the saved swap record
+	 * @throws Exception 
 	 */
-	public SwapDto save(SwapDto swap);
+	public SwapDto save(SwapDto swap) throws Exception;
 	
 	
 	/**
@@ -27,15 +29,17 @@ public interface SwapServiceI {
 	 * @param id - the ID of the swap to update. Rejected if not provided
 	 * 
 	 * @return the updated swap record
+	 * @throws Exception 
 	 */
-	public SwapDto update(SwapDto swap, Long id);
+	public SwapDto update(SwapDto swap, Long id) throws Exception;
 	
 	/**
 	 * Deletes a swap
 	 * 
 	 * @param id - the ID of the swap to delete
+	 * @throws Exception 
 	 */
-	public void deleteById(Long id);
+	public void deleteById(Long id) throws Exception;
 	
 	/**
 	 * Finds a swap by ID
@@ -43,8 +47,9 @@ public interface SwapServiceI {
 	 * @param id - the ID of the swap to find
 	 * 
 	 * @return the swap record found
+	 * @throws Exception 
 	 */
-	public SwapDto findById(Long id);
+	public SwapDto findById(Long id) throws Exception;
 	
 	/**
 	 * Get a list of all swaps

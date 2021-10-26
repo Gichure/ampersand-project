@@ -1,6 +1,6 @@
 # Ampersand Software Engineer Project
 
-A system to track the assets in motion, battery swap and telematics onboard. 
+A system to track the assets in motion, battery swap and telematics onboard. This is a RESTful services based project.
 
 ## Setup
 1.  Ensure you have MySQL 5.7+ installed.  

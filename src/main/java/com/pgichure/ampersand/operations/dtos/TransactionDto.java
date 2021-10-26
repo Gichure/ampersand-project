@@ -3,6 +3,8 @@ package com.pgichure.ampersand.operations.dtos;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.pgichure.ampersand.operations.models.Transaction;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -43,5 +45,23 @@ public class TransactionDto {
 	
 	@ApiModelProperty(name = "net_amount", notes = "The net amount of the transaction", required = true)
 	private BigDecimal net_amount;
+	
+	
+	/**
+	 * This method casts the {@link TransactionDto} class to its {@link Transaction} entity class
+	 * @return {@link Transaction}
+	 */
+	
+	public Transaction getEntity() {
+		return Transaction.builder()
+				.charges(this.getCharges())
+				.costPerUnit(this.getCost_per_unit())
+				.grossAmount(this.getGross_amount())
+				.id(this.getId())
+				.netAmount(this.getNet_amount())
+				.transactionDate(this.getTransactionDate())
+				.units(this.getUnits())
+				.build();
+	}
 	
 }

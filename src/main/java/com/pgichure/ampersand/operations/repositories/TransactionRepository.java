@@ -6,7 +6,7 @@ import com.pgichure.ampersand.operations.models.Transaction;
 
 /**
  * @author Paul
- * <p> @Transaction data access object
+ * <p>{@link Transaction} data access object
  */
 public interface TransactionRepository extends JpaRepository<Transaction, Long>{
 

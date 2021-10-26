@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.operations.dtos.TransactionDto;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
@@ -63,5 +64,22 @@ public class Transaction extends Auditable<String> implements Serializable{/**
 	
 	@Column(name = "net_amount", nullable = false)
 	private BigDecimal netAmount;
+	
+	/**
+	 * This method casts the {@link Transaction} entity class to its {@link TransactionDto}
+	 * @return {@link TransactionDto}
+	 */
+	public TransactionDto getDto() {
+		return TransactionDto.builder()
+				.charges(this.getCharges())
+				.cost_per_unit(this.getCostPerUnit())
+				.gross_amount(this.getGrossAmount())
+				.id(this.getId())
+				.net_amount(this.getNetAmount())
+				.swapId(this.getSwap() == null ? null : this.getSwap().getId())
+				.transactionDate(this.getTransactionDate())
+				.units(this.getUnits())
+				.build();
+	}
 	
 }

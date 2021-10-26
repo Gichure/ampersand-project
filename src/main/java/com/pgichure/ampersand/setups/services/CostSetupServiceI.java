@@ -3,48 +3,52 @@ package com.pgichure.ampersand.setups.services;
 import java.util.List;
 
 import com.pgichure.ampersand.setups.dtos.CostSetupDto;
+import com.pgichure.ampersand.setups.models.CostSetup;
 
 /**
  * @author Paul
- * <p> The CostSetup service class interface
+ * <p> The {@link CostSetup} service class interface
  */
 public interface CostSetupServiceI {
 
 	/**
-	 * Saves a setup
+	 * Saves a {@link CostSetup}
 	 * 
-	 * @param the setup to save
+	 * @param the {@link CostSetup} to save
 	 * 
-	 *  @return the saved setup record
+	 *  @return the saved {@link CostSetup} record
 	 */
 	public CostSetupDto save(CostSetupDto setup);
 	
 	
 	/**
-	 * Updates a setup
+	 * Updates a {@link CostSetup}
 	 * 
-	 * @param setup details to update
-	 * @param id - the ID of the setup to update. Rejected if not provided
+	 * @param {@link CostSetup} details to update
+	 * @param id - the ID of the {@link CostSetup} to update. Rejected if not provided
 	 * 
-	 * @return the updated setup record
+	 * @return the updated {@link CostSetup} record
+	 * @throws Exception 
 	 */
-	public CostSetupDto update(CostSetupDto setup, Long id);
+	public CostSetupDto update(CostSetupDto setup, Long id) throws Exception;
 	
 	/**
-	 * Deletes a setup
+	 * Deletes a {@link CostSetup}
 	 * 
-	 * @param id - the ID of the setup to delete
+	 * @param id - the ID of the {@link CostSetup} to delete
+	 * @throws Exception 
 	 */
-	public void deleteById(Long id);
+	public void deleteById(Long id) throws Exception;
 	
 	/**
-	 * Finds a setup by ID
+	 * Finds a {@link CostSetup} by ID
 	 * 
-	 * @param id - the ID of the setup to find
+	 * @param id - the ID of the {@link CostSetup} to find
 	 * 
-	 * @return the setup record found
+	 * @return the {@link CostSetup} record found
+	 * @throws Exception 
 	 */
-	public CostSetupDto findById(Long id);
+	public CostSetupDto findById(Long id) throws Exception;
 	
 	/**
 	 * Get a list of all setups

@@ -3,53 +3,57 @@ package com.pgichure.ampersand.setups.services;
 import java.util.List;
 
 import com.pgichure.ampersand.setups.dtos.MotorCycleDto;
+import com.pgichure.ampersand.setups.models.MotorCycle;
 
 /**
  * @author Paul
- * p> The MotorCycle service class interface
+ * p> The {@link MotorCycle} service class interface
  */
 public interface MotorCycleServiceI {
 
 	/**
-	 * Saves a motor cycle
+	 * Saves a {@link MotorCycle}
 	 * 
-	 * @param the motor cycle to save
+	 * @param the {@link MotorCycle} to save
 	 * 
-	 *  @return the saved motor cycle record
+	 *  @return the saved {@link MotorCycle}rCycle} record
 	 */
 	public MotorCycleDto save(MotorCycleDto motorCycle);
 	
 	
 	/**
-	 * Updates a motor cycle
+	 * Updates a {@link MotorCycle}
 	 * 
-	 * @param motor cycle details to update
-	 * @param id - the ID of the motor cycle to update. Rejected if not provided
+	 * @param {@link MotorCycle} details to update
+	 * @param id - the ID of the {@link MotorCycle} to update. Rejected if not provided
 	 * 
-	 * @return the updated motor cycle record
+	 * @return the updated {@link MotorCycle} record
+	 * @throws Exception 
 	 */
-	public MotorCycleDto update(MotorCycleDto motorCycle, Long id);
+	public MotorCycleDto update(MotorCycleDto motorCycle, Long id) throws Exception;
 	
 	/**
-	 * Deletes a motor cycle
+	 * Deletes a {@link MotorCycle}
 	 * 
-	 * @param id - the ID of the motor cycle to delete
+	 * @param id - the ID of the {@link MotorCycle} to delete
+	 * @throws Exception 
 	 */
-	public void deleteById(Long id);
+	public void deleteById(Long id) throws Exception;
 	
 	/**
-	 * Finds a motor cycle by ID
+	 * Finds a {@link MotorCycle} by ID
 	 * 
-	 * @param id - the ID of the motor cycle to find
+	 * @param id - the ID of the {@link MotorCycle} to find
 	 * 
-	 * @return the motor cycle record found
+	 * @return the {@link MotorCycle} record found
+	 * @throws Exception 
 	 */
-	public MotorCycleDto findById(Long id);
+	public MotorCycleDto findById(Long id) throws Exception;
 	
 	/**
-	 * Get a list of all motor cycles
+	 * Get a list of all {@link MotorCycle}
 	 * 
-	 * @return the list of all motor cycles
+	 * @return the list of all {@link MotorCycle}
 	 */
 	public List<MotorCycleDto> findAll();
 	

@@ -3,6 +3,8 @@ package com.pgichure.ampersand.operations.dtos;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import com.pgichure.ampersand.operations.models.Swap;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -48,5 +50,22 @@ public class SwapDto {
 	
 	@ApiModelProperty(name = "return_mileage", notes = "The motor cycle mileage count at return")
 	private BigDecimal return_mileage;
+	
+	/**
+	 * This method casts the {@link SwapDto} class to its {@link Swap} entity class
+	 * @return {@link Swap}
+	 */
+	
+	public Swap getEntity() {
+		return Swap.builder()
+				.chargeIssueLevel(this.getCharge_issue_level())
+				.chargeReturnLevel(this.getCharge_return_level())
+				.dateIssued(this.getDate_issued())
+				.dateReturned(this.getDate_returned())
+				.id(this.getId())
+				.issuanceMileage(this.getIssuance_mileage())
+				.returnMileage(this.getReturn_mileage())
+				.build();
+	}
 	
 }

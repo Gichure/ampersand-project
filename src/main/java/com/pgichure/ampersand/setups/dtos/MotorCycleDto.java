@@ -1,5 +1,7 @@
 package com.pgichure.ampersand.setups.dtos;
 
+import com.pgichure.ampersand.setups.models.MotorCycle;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -33,5 +35,20 @@ public class MotorCycleDto {
 	
 	@ApiModelProperty(name = "chassisNumber", notes = "The motor cycle's chassis number")
     private String chassisNumber;
+	
+	/**
+	 * This method casts the {@link MotorCycleDto} class to its {@link MotorCycle} entity class
+	 * @return {@link MotorCycle}
+	 */
+	
+	public MotorCycle getEntity() {
+		return MotorCycle.builder()
+				.id(this.getId())
+				.chassisNumber(this.getChassisNumber())
+				.colour(this.getColour())
+				.make(this.getMake())
+				.model(this.getModel())
+				.build();
+	}
 	
 }

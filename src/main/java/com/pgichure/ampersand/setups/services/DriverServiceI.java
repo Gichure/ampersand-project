@@ -6,50 +6,53 @@ import com.pgichure.ampersand.setups.dtos.DriverDto;
 
 /**
  * @author Paul
- * <p> The Driver service class interface
+ * <p> The {@link Driver} service class interface
  */
 public interface DriverServiceI {
 
 	/**
-	 * Saves a driver
+	 * Saves a {@link Driver}
 	 * 
-	 * @param the driver to save
+	 * @param the {@link Driver} to save
 	 * 
-	 *  @return the saved driver record
+	 *  @return the saved {@link Driver} record
 	 */
 	public DriverDto save(DriverDto driver);
 	
 	
 	/**
-	 * Updates a driver
+	 * Updates a {@link Driver}
 	 * 
-	 * @param driver details to update
-	 * @param id - the ID of the driver to update. Rejected if not provided
+	 * @param {@link Driver} details to update
+	 * @param id - the ID of the {@link Driver} to update. Rejected if not provided
 	 * 
-	 * @return the updated driver record
+	 * @return the updated {@link Driver} record
+	 * @throws Exception 
 	 */
-	public DriverDto update(DriverDto driver, Long id);
+	public DriverDto update(DriverDto driver, Long id) throws Exception;
 	
 	/**
-	 * Deletes a driver
+	 * Deletes a {@link Driver}
 	 * 
-	 * @param id - the ID of the driver to delete
+	 * @param id - the ID of the {@link Driver} to delete
+	 * @throws Exception 
 	 */
-	public void deleteById(Long id);
+	public void deleteById(Long id) throws Exception;
 	
 	/**
-	 * Finds a driver by ID
+	 * Finds a {@link Driver} by ID
 	 * 
-	 * @param id - the ID of the driver to find
+	 * @param id - the ID of the {@link Driver} to find
 	 * 
-	 * @return the driver record found
+	 * @return the {@link Driver} record found
+	 * @throws Exception 
 	 */
-	public DriverDto findById(Long id);
+	public DriverDto findById(Long id) throws Exception;
 	
 	/**
-	 * Get a list of all drivers
+	 * Get a list of all {@link Driver}
 	 * 
-	 * @return the list of all drivers
+	 * @return the list of all {@link Driver}
 	 */
 	public List<DriverDto> findAll();
 	

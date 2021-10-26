@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pgichure.ampersand.setups.dtos.BatteryDto;
-import com.pgichure.ampersand.setups.models.Battery;
-import com.pgichure.ampersand.setups.services.BatteryServiceI;
+import com.pgichure.ampersand.setups.dtos.StationDto;
+import com.pgichure.ampersand.setups.models.Station;
+import com.pgichure.ampersand.setups.services.StationServiceI;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -29,41 +29,41 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * @author Paul
- * <p> The endpoint controller class for the {@link Battery} class
+ *<p>The endpoint controller class for the {@link Station} class
  */
 @RestController
-@RequestMapping(value = "/batteries")
+@RequestMapping(value = "/stations")
 @Api(tags = {"System Setups"}, description = "Operations relations system setups")
 @RequiredArgsConstructor
-public class BatteryController {
-	
-	private final BatteryServiceI service;
+public class StationController {
+
+	private StationServiceI service;
 	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
-	@ApiOperation(value = "Saving of a battery", notes = "Returns saved battery details.",response = BatteryDto.class)
+	@ApiOperation(value = "Saving of a station", notes = "Returns saved station details.",response = StationDto.class)
 	@ApiResponses(value = {
-			@ApiResponse(code = 200, message = "Successfully created the battery."),
+			@ApiResponse(code = 200, message = "Successfully created the station."),
 			@ApiResponse(code = 400, message = "Bad Request"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
 			@ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
 			@ApiResponse(code = 404, message = "The resource you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<BatteryDto> save(
-			@ApiParam(value = "The battery details.", required = true)
-			@RequestBody BatteryDto battery) {
+	public ResponseEntity<StationDto> save(
+			@ApiParam(value = "The station details.", required = true)
+			@RequestBody StationDto station) {
 		try {
-			battery = service.save(battery);
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.CREATED);
+			station = service.save(station);
+			return new ResponseEntity<StationDto>(station, HttpStatus.CREATED);
 		} catch (Exception e) {
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<StationDto>(station, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@GetMapping(value = "/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
-	@ApiOperation(value = "Fetch battery using ID", response = BatteryDto.class)
+	@ApiOperation(value = "Fetch station using ID", response = StationDto.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved the record"),
 			@ApiResponse(code = 400, message = "Bad Request"),
@@ -72,24 +72,24 @@ public class BatteryController {
 			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<BatteryDto> findById(
-			@ApiParam(value = "The ID of the battery to query.", required = true)
+	public ResponseEntity<StationDto> findById(
+			@ApiParam(value = "The ID of the station to query.", required = true)
 			@PathVariable("id") Long id) {
-		BatteryDto battery = BatteryDto.builder()
+		StationDto station = StationDto.builder()
 				.build();
 		try {
-			battery = service.findById(id);
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.FOUND);
+			station = service.findById(id);
+			return new ResponseEntity<StationDto>(station, HttpStatus.FOUND);
 		}catch (NoSuchElementException e) {
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<StationDto>(station, HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<StationDto>(station, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@GetMapping
 	@ResponseStatus(value = HttpStatus.FOUND)
-	@ApiOperation(value = "Fetch batteries values listing", response = List.class)
+	@ApiOperation(value = "Fetch stations listing", response = List.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully retrieved the records"),
 			@ApiResponse(code = 400, message = "Bad Request"),
@@ -98,21 +98,21 @@ public class BatteryController {
 			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<List<BatteryDto>> findByAll() {
-		List<BatteryDto> batteries = new ArrayList<BatteryDto>();
+	public ResponseEntity<List<StationDto>> findByAll() {
+		List<StationDto> stations = new ArrayList<StationDto>();
 		try {
-			batteries = service.findAll();
-			return new ResponseEntity<List<BatteryDto>>(batteries, HttpStatus.OK);
+			stations = service.findAll();
+			return new ResponseEntity<List<StationDto>>(stations, HttpStatus.OK);
 		}
 		catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<List<BatteryDto>>(batteries, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<List<StationDto>>(stations, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@PutMapping(value = "/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
-	@ApiOperation(value = "Update battery using ID", response = BatteryDto.class)
+	@ApiOperation(value = "Update station using ID", response = StationDto.class)
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully updated the record"),
 			@ApiResponse(code = 400, message = "Bad Request"),
@@ -121,26 +121,26 @@ public class BatteryController {
 			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<BatteryDto> update(
-			@ApiParam(value = "The ID of the battery to update.", required = true)
+	public ResponseEntity<StationDto> update(
+			@ApiParam(value = "The ID of the station to update.", required = true)
 			@PathVariable("id") Long id,
-			@ApiParam(value = "The battery details.", required = true)
-			@RequestBody BatteryDto battery) {
+			@ApiParam(value = "The station details.", required = true)
+			@RequestBody StationDto station) {
 		try {
-			battery = service.update(battery, id);
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.CREATED);
+			station = service.update(station, id);
+			return new ResponseEntity<StationDto>(station, HttpStatus.CREATED);
 		}catch (NoSuchElementException e) {
 			e.printStackTrace();
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.NOT_FOUND);
+			return new ResponseEntity<StationDto>(station, HttpStatus.NOT_FOUND);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<StationDto>(station, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 	
 	@DeleteMapping(value = "/{id}")
 	@ResponseStatus(value = HttpStatus.OK)
-	@ApiOperation(value = "Delete battery using ID")
+	@ApiOperation(value = "Delete station using ID")
 	@ApiResponses(value = {
 			@ApiResponse(code = 200, message = "Successfully deleted the record"),
 			@ApiResponse(code = 400, message = "Bad Request"),
@@ -149,17 +149,16 @@ public class BatteryController {
 			@ApiResponse(code = 404, message = "The record you were trying to reach is not found"),
 			@ApiResponse(code = 500, message = "The server encountered an error")
 	})
-	public ResponseEntity<BatteryDto> deleteById(
-			@ApiParam(value = "The ID of the battery to delete.", required = true)
+	public ResponseEntity<StationDto> deleteById(
+			@ApiParam(value = "The ID of the station to delete.", required = true)
 			@PathVariable("id") Long id) {
-		BatteryDto battery = BatteryDto.builder()
+		StationDto station = StationDto.builder()
 				.build();
 		try {
 			service.deleteById(id);
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.OK);
+			return new ResponseEntity<StationDto>(station, HttpStatus.OK);
 		}catch (Exception e) {
-			return new ResponseEntity<BatteryDto>(battery, HttpStatus.INTERNAL_SERVER_ERROR);
+			return new ResponseEntity<StationDto>(station, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-
 }

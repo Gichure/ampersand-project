@@ -15,6 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.setups.dtos.DriverDto;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
@@ -58,5 +59,20 @@ public class Driver extends Auditable<String> implements Serializable{/**
 	
 	@Column(name = "locality")
     private String locality;
+	
+	/**
+	 * This method casts the {@link Driver} entity class to its {@link DriverDto}
+	 * @return {@link DriverDto}
+	 */
+	public DriverDto getDto() {
+		return DriverDto.builder()
+				.id(this.getId())
+				.identification_number(this.getIdNumber())
+				.license_number(this.getLicenseNumber())
+				.locality(this.getLocality())
+				.name(this.getName())
+				.town(this.getTown())
+				.build();
+	}
 	
 }

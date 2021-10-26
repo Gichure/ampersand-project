@@ -6,7 +6,7 @@ import com.pgichure.ampersand.setups.models.Station;
 
 /**
  * @author Paul
- * <p> @Station data access object
+ * <p> {@link Station} data access object
  */
 public interface StationRepository extends JpaRepository<Station, Long>{
 

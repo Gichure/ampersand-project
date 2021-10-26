@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.setups.dtos.MotorCycleDto;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
@@ -55,5 +56,20 @@ public class MotorCycle extends Auditable<String> implements Serializable{/**
 	
 	@Column(name = "chassis_number", nullable = false)
     private String chassisNumber;
+	
+	/**
+	 * This method casts the {@link MotorCycle} entity class to its {@link MotorCycleDto}
+	 * @return {@link MotorCycleDto}
+	 */
+	public MotorCycleDto getDto() {
+		return MotorCycleDto.builder()
+				.id(this.getId())
+				.chassisNumber(this.getChassisNumber())
+				.colour(this.getColour())
+				.driverId(this.getIssuedTo() == null ? null : this.getIssuedTo().getId())
+				.make(this.getMake())
+				.model(this.getModel())
+				.build();
+	}
 	
 }

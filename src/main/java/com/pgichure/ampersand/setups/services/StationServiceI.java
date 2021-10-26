@@ -3,53 +3,57 @@ package com.pgichure.ampersand.setups.services;
 import java.util.List;
 
 import com.pgichure.ampersand.setups.dtos.StationDto;
+import com.pgichure.ampersand.setups.models.Station;
 
 /**
  * @author Paul
- * <p> The Station service class interface
+ * <p> The {@link Station} service class interface
  */
 public interface StationServiceI {
 
 	/**
-	 * Saves a station
+	 * Saves a {@link Station}
 	 * 
-	 * @param the station to save
+	 * @param the {@link Station} to save
 	 * 
-	 *  @return the saved station record
+	 *  @return the saved {@link Station} record
 	 */
 	public StationDto save(StationDto station);
 	
 	
 	/**
-	 * Updates a station
+	 * Updates a {@link Station}
 	 * 
-	 * @param station details to update
-	 * @param id - the ID of the station to update. Rejected if not provided
+	 * @param {@link Station} details to update
+	 * @param id - the ID of the {@link Station} to update. Rejected if not provided
 	 * 
-	 * @return the updated station record
+	 * @return the updated {@link Station} record
+	 * @throws Exception 
 	 */
-	public StationDto update(StationDto station, Long id);
+	public StationDto update(StationDto station, Long id) throws Exception;
 	
 	/**
-	 * Deletes a station
+	 * Deletes a {@link Station}
 	 * 
-	 * @param id - the ID of the station to delete
+	 * @param id - the ID of the {@link Station} to delete
+	 * @throws Exception 
 	 */
-	public void deleteById(Long id);
+	public void deleteById(Long id) throws Exception;
 	
 	/**
-	 * Finds a station by ID
+	 * Finds a {@link Station} by ID
 	 * 
-	 * @param id - the ID of the station to find
+	 * @param id - the ID of the {@link Station} to find
 	 * 
-	 * @return the station record found
+	 * @return the {@link Station} record found
+	 * @throws Exception 
 	 */
-	public StationDto findById(Long id);
+	public StationDto findById(Long id) throws Exception;
 	
 	/**
-	 * Get a list of all stations
+	 * Get a list of all {@link Station}
 	 * 
-	 * @return the list of all stations
+	 * @return the list of all {@link Station}
 	 */
 	public List<StationDto> findAll();
 	

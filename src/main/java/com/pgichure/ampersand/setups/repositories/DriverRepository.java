@@ -6,7 +6,7 @@ import com.pgichure.ampersand.setups.models.Driver;
 
 /**
  * @author Paul
- * <p> @Driver data access object
+ * <p> {@link Driver} data access object
  */
 public interface DriverRepository extends JpaRepository<Driver, Long>{
 

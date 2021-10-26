@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.operations.dtos.SwapDto;
 import com.pgichure.ampersand.setups.models.Battery;
 import com.pgichure.ampersand.setups.models.Driver;
 import com.pgichure.ampersand.setups.models.Station;
@@ -74,4 +75,24 @@ public class Swap extends Auditable<String> implements Serializable{/**
 	
 	@Column(name = "return_mileage")
 	private BigDecimal returnMileage;
+	
+	/**
+	 * This method casts the {@link Swap} entity class to its {@link SwapDto}
+	 * @return {@link SwapDto}
+	 */
+	
+	public SwapDto getDto() {
+		return SwapDto.builder()
+				.charge_issue_level(this.getChargeIssueLevel())
+				.charge_return_level(this.getChargeReturnLevel())
+				.date_issued(this.getDateIssued())
+				.date_returned(this.getDateReturned())
+				.id(this.getId())
+				.issuance_mileage(this.getIssuanceMileage())
+				.return_mileage(this.getReturnMileage())
+				.battery_id(this.getBatteryIssued() == null ? null : this.getBatteryIssued().getId())
+				.driver_id(this.getIssuedTo() == null ? null : this.getIssuedTo().getId())
+				.station_id(this.getStation() == null ? null : this.getStation().getId())
+				.build();
+	}
 }

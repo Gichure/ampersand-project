@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.setups.dtos.CostSetupDto;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
@@ -48,5 +49,18 @@ public class CostSetup extends Auditable<String> implements Serializable{/**
 	
 	@Column(name = "cost_per_unit", nullable = false)
     private BigDecimal costPerUnit;
+	
+	/**
+	 * This method casts the {@link CostSetup} entity class to its {@link CostSetupDto}
+	 * @return {@link CostSetupDto}
+	 */
+	public CostSetupDto getDto() {
+		return CostSetupDto.builder()
+				.date_from(this.getDateFrom())
+				.date_to(this.getDateTo())
+				.id(this.getId())
+				.cost_per_unit(this.getCostPerUnit())
+				.build();
+	}
 
 }

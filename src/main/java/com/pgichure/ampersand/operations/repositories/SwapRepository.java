@@ -6,7 +6,7 @@ import com.pgichure.ampersand.operations.models.Swap;
 
 /**
  * @author Paul
- * <p>Swap data access object
+ * <p>{@link Swap} data access object
  */
 public interface SwapRepository extends JpaRepository<Swap, Long>{
 

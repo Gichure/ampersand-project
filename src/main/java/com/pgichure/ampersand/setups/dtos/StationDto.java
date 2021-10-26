@@ -1,5 +1,7 @@
 package com.pgichure.ampersand.setups.dtos;
 
+import com.pgichure.ampersand.setups.models.Station;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
@@ -33,5 +35,21 @@ public class StationDto {
 	
 	@ApiModelProperty(name = "building", notes = "The building where the station is housed")
     private String building;
+	
+	/**
+	 * This method casts the {@link StationDto} class to its {@link Station} entity class
+	 * @return {@link Station}
+	 */
+	
+	public Station getEntity() {
+		return Station.builder()
+				.building(this.getBuilding())
+				.coordinates(this.getCoordinates())
+				.id(this.getId())
+				.name(this.getName())
+				.street(this.getStreet())
+				.town(this.getTown())
+				.build();
+	}
 	
 }

@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.pgichure.ampersand.setups.dtos.BatteryDto;
 import com.pgichure.ampersand.utils.Auditable;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 
 /**
  * @author Paul
- * <p>This is an entity class for a motor cycle battery
+ * <p>This is an entity class for a motor cycle battery {@link Battery}
  */
 @Data
 @RequiredArgsConstructor
@@ -60,4 +61,17 @@ public class Battery extends Auditable<String> implements Serializable{/**
 	 */
 	@Column(name = "capacity", nullable = false)
     private String capacity;
+	
+	/**
+	 * This method casts the {@link Battery} entity class to its {@link BatteryDto}
+	 * @return {@link BatteryDto}
+	 */
+	public BatteryDto getDto() {
+		return BatteryDto.builder()
+				.battery_type(this.getBatteryType())
+				.capacity(this.getCapacity())
+				.id(this.getId())
+				.serial_number(this.getSerialNumber())
+				.build();
+	}
 }
