@@ -65,7 +65,6 @@ http://127.0.0.1:1212/motor-cycles
 -  MySQL for database management
 -  Javadoc for Java code documentation
 -  PMD for Static Analysis
--  Flyway for database migrations and versioning
 -  Git for source control
 -  OpenAPI 3.0(Swagger) for endpoints documentation
 
