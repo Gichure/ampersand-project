@@ -80,37 +80,6 @@
                </execution>
            </executions>
 		</plugin>
-		<plugin>
-		    <groupId>org.flywaydb</groupId>
-		    <artifactId>flyway-maven-plugin</artifactId>
-		</plugin>
-		<plugin>
-            <groupId>pl.project13.maven</groupId>
-            <artifactId>git-commit-id-plugin</artifactId>
-        </plugin>
-        <plugin>
-      <groupId>com.iluwatar.urm</groupId>
-      <artifactId>urm-maven-plugin</artifactId>
-      <version>1.4.8</version>
-      <configuration>
-      	<outputDirectory>${project.basedir}/target</outputDirectory>
-        <packages>
-          <param>com.pgichure.ampersand.setups.models</param>
-          <param>com.pgichure.ampersand.operations.models</param>
-        </packages>
-        <includeMainDirectory>true</includeMainDirectory>
-        <includeTestDirectory>false</includeTestDirectory>
-        <presenter>plantuml</presenter>
-      </configuration>
-      <executions>
-        <execution>
-          <phase>process-classes</phase>
-          <goals>
-            <goal>map</goal>
-          </goals>
-        </execution>
-      </executions>
-    </plugin>
     <plugin>
          <groupId>org.apache.maven.plugins</groupId>
          <artifactId>maven-pmd-plugin</artifactId>
