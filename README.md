@@ -69,5 +69,5 @@ http://127.0.0.1:1212/motor-cycles
 -  OpenAPI 3.0(Swagger) for endpoints documentation
 
 ## Contact
-You can reach me on [gichurepaul@gmail.com](this email).
+You can reach me on [this email](gichurepaul@gmail.com).
 
